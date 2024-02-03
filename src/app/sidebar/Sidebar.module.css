@@ -1,0 +1,34 @@
+/* styles/Sidebar.module.css */
+.sidebar {
+  width: 0;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: width 0.3s ease-in-out;
+  overflow-x: hidden;
+}
+
+.sidebar.open {
+  width: 250px; /* Set your desired width when open */
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+/* Add a media query for mobile view */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 0;
+  }
+
+  .sidebar.open {
+    width: 80%; /* Adjust the width as needed */
+  }
+}

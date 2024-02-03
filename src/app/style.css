@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0 30px;
+  background: #f7f8fa;
+}
+.main-section {
+  width: calc(100%-200px);
+  height: 100vh;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  background: aliceblue;
+}
+
+.main {
+  flex-grow: 1;
+  margin-left: 35px;
+  box-sizing: border-box;
+}
+
+.page {
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+  height: calc(100vh - 100px);
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+
+.dua-container {
+  flex: 1;
+  margin: 0px 30px;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  background: none;
+  padding: 0px 10px;
+}
+
+.heading {
+  padding: 20px 10px;
+  background: #ffffff;
+  margin-bottom: 20px;
+}
+
+.dua-container::-webkit-scrollbar {
+  width: 8px;
+  margin-left: 3px;
+}
+
+.dua-container::-webkit-scrollbar-thumb {
+  background-color: #cecccc;
+  border-radius: 5px;
+}
+
+.ref {
+  color: green;
+}
+
+/* css for sidebar open close.......... */
+/* Inside your styles or a dedicated CSS file */
+
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger-menu-hide {
+  display: none;
+}
+
+.line {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 2px 0;
+  transition: 0.4s;
+}
+
+.close-icon {
+  font-size: 30px;
+  margin-right: 20px;
+}
+
+.hamburger-menu.open .line:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger-menu.open .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.open .line:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}

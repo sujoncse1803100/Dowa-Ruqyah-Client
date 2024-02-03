@@ -1,0 +1,35 @@
+/* Inside your styles or a dedicated CSS file */
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.hamburger-menu-hide {
+  display: none;
+}
+
+.line {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  margin: 2px 0;
+  transition: 0.4s;
+}
+
+.close-icon {
+  font-size: 30px;
+  margin-right: 20px;
+}
+
+.hamburger-menu.open .line:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger-menu.open .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.open .line:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
+}

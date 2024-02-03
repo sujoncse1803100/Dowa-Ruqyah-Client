@@ -1,95 +1,114 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import LeftSidebar from "@/components/LeftSideBar";
+import RightSidebar from "@/components/RightSideBar";
+import TopBar from "@/components/Topbar";
+import "./style.css";
+import "./responsive.css";
+import Sidebar from "@/components/Sidebar";
+import SingleDua from "@/components/SingleDua";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const [duas, setDuas] = useState([]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const handleSidebarToggle = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const handleCloseButton = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const fetchApi = async (keys) => {
+    await fetch("http://localhost:8086/dua")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (!keys) {
+          setDuas(data);
+        } else {
+          const filterdDuas = data.filter((dua) => dua.cat_id === keys.cat_id);
+          setDuas(filterdDuas);
+        }
+      })
+      .catch((error) => console.error("Fetch error:", error));
+  };
+
+  useEffect(() => {
+    fetchApi();
+  }, []);
+
+  const focusOnElement = (elementId) => {
+    const targetElement = document.getElementById(elementId);
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: "smooth" });
+      targetElement.focus();
+    }
+  };
+
+  const filterData = (keys) => {
+    if (!keys.dua_id) {
+      fetchApi(keys);
+    } else {
+      const element_id =
+        keys.cat_id +
+        "" +
+        keys.subcat_id +
+        "" +
+        (keys.dua_id ? keys.dua_id : "1");
+      focusOnElement(element_id);
+    }
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="main-section">
+      {/* <div
+        className={`${isSidebarOpen ? "close-sidebar" : "close-sidebarHide"}`}
+        onClick={handleCloseButton}
+      >
+        Close
+      </div> */}
+      <Sidebar />
+      <div className="main">
+        <TopBar />
+        <div className="open-sidebar">
+          <div
+            className={`${!isSidebarOpen ? "hamburger-menu" : ""}`}
+            onClick={handleSidebarToggle}
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            <div className="line"></div>
+            <div className="line"></div>
+            <div className="line"></div>
+          </div>
+
+          <div>Open sidebar div</div>
+        </div>
+
+        <div className="page">
+          <LeftSidebar
+            filterData={filterData}
+            isSidebarOpen={isSidebarOpen}
+            handleCloseButton={handleCloseButton}
+          />
+          <div className="dua-container">
+            <div className="heading">
+              <span className="ref"> Section:</span> The servant is dependent on
+              his Lord
+            </div>
+
+            {duas?.map((data, i) => (
+              <SingleDua data={data} key={i} />
+            ))}
+          </div>
+          <RightSidebar />
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }

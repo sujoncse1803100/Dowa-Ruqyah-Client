@@ -1,0 +1,28 @@
+/* src/app/components/Layout.module.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.mainContent {
+  display: flex;
+  flex: 1;
+}
+
+.mainSection {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Add media query for responsiveness */
+@media (max-width: 768px) {
+  .mainContent {
+    flex-direction: column;
+  }
+
+  .left-sidebar,
+  .right-sidebar {
+    width: 100%;
+  }
+}

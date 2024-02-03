@@ -1,0 +1,150 @@
+.leftSidebar .bottom {
+  /* background: red; */
+  flex: 1;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+.leftSidebar .bottom::-webkit-scrollbar {
+  width: 8px;
+  margin-left: 3px;
+}
+
+.leftSidebar .bottomr::-webkit-scrollbar-thumb {
+  background-color: #cecccc;
+  border-radius: 5px;
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0px;
+}
+
+.set {
+  background: transparent;
+}
+
+.cat-link {
+  text-decoration: none;
+}
+
+.category-selected {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: lightblue;
+  margin: 10px 0px;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  margin: 10px 0px;
+}
+
+.content {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+}
+
+.content .icon {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.content .icon:hover {
+  color: red;
+}
+
+.dua_category {
+  font-family: Inter;
+  font-size: 17px;
+  font-weight: 300;
+  text-align: left;
+}
+
+.dua_category_subtitle {
+  font-family: Poppins;
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+ul {
+  cursor: pointer;
+}
+
+.closeSidebar {
+  display: none;
+}
+
+.responsive-category-title {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .leftSidebar {
+    height: calc(100vh);
+    box-sizing: border-box;
+  }
+  .leftSidebar .top .title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+    box-sizing: border-box;
+  }
+
+  .closeSidebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .closeSidebar:hover {
+    color: red;
+  }
+
+  .responsive-category-title {
+    display: none;
+  }
+
+  .leftSidebarOn {
+    position: relative;
+    /* width: 0; */
+    /* display: none; */
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    border-radius: 0px !important;
+    animation: slideIn 0s ease-in-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      display: none;
+    }
+    to {
+      display: contents;
+    }
+  }
+
+  .isSidebarClose {
+    display: none;
+  }
+
+  .leftSidebar .top .title {
+    border-radius: 0px !important;
+  }
+}

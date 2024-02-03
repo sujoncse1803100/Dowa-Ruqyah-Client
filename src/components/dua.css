@@ -1,0 +1,94 @@
+.dua {
+  padding: 20px 20px;
+  background: #ffffff;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.first {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.name {
+  display: flex;
+  color: green;
+  margin-left: 15px;
+}
+
+.second {
+  margin-top: 10px;
+}
+
+.items {
+  margin-bottom: 15px;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 34px;
+  letter-spacing: 0em;
+  /* text-align: left; */
+}
+
+.ref {
+  color: green;
+}
+
+.arabic {
+  direction: rtl !important;
+  font-family: me_quran;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 71px;
+  letter-spacing: 0em;
+  text-align: right;
+}
+
+.third {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.only-utils {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.play {
+  cursor: pointer;
+}
+
+.utils {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.utils > img {
+  margin-left: 35px;
+  cursor: pointer;
+}
+
+.play {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.play .playIcon {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+
+@media screen and (max-width: 868px) {
+  .third {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
