@@ -1,13 +1,12 @@
 "use client";
 import LeftSidebar from "@/components/LeftSideBar";
 import RightSidebar from "@/components/RightSideBar";
-import TopBar from "@/components/Topbar";
+import TopBar from "../components/TopBar";
 import "./style.css";
 import "./responsive.css";
 import Sidebar from "@/components/Sidebar";
 import SingleDua from "@/components/SingleDua";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [duas, setDuas] = useState([]);
