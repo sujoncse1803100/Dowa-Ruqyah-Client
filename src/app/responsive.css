@@ -25,11 +25,12 @@
   .open-sidebar {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     margin-top: 30px;
     background: #ffffff;
     padding: 10px 20px;
     border-radius: 10px;
+    gap: 20px;
   }
 
   .close-sidebar {

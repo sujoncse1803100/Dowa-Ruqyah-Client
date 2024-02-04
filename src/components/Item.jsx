@@ -38,7 +38,7 @@ const Item = ({ item, filterData }) => {
         dua_id: item.dua_id,
       });
 
-      const name = item.dua_name_en.replace(/\s/g, "-");
+      const name = item.dua_name_en?.replace(/\s/g, "-");
 
       router.push(
         `/?dua_name=${name}&cat=${item.cat_id}&subcat=${item.subcat_id}&dua=${item.dua_id}`,

@@ -46,7 +46,9 @@ const SingleDua = ({ data }) => {
     <div className="dua" id={element_id}>
       <div className="first">
         <img src="/icon/allah 1 (Traced).svg" alt="" />
-        <div className="name">{dua_name_en}</div>
+        <div className="name">
+          {dua_id}. {dua_name_en}
+        </div>
       </div>
       <div className="second">
         <div className="desc items">{top_en}</div>

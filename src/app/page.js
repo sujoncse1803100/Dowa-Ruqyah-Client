@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 export default function Home() {
   const [duas, setDuas] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [categoryName, setCategoryName] = useState("");
 
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -40,8 +41,24 @@ export default function Home() {
       .catch((error) => console.error("Fetch error:", error));
   };
 
+  const fetCategoryName = async (cat_id) => {
+    await fetch("http://localhost:8086/category")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const category = data.find((cat) => cat.cat_id == cat_id);
+        setCategoryName(category.cat_name_en);
+      })
+      .catch((error) => console.error("Fetch error:", error));
+  };
+
   useEffect(() => {
     fetchApi();
+    fetCategoryName(1);
   }, []);
 
   const focusOnElement = (elementId) => {
@@ -53,6 +70,7 @@ export default function Home() {
   };
 
   const filterData = (keys) => {
+    fetCategoryName(keys.cat_id);
     if (!keys.dua_id) {
       fetchApi(keys);
     } else {
@@ -68,12 +86,6 @@ export default function Home() {
 
   return (
     <div className="main-section">
-      {/* <div
-        className={`${isSidebarOpen ? "close-sidebar" : "close-sidebarHide"}`}
-        onClick={handleCloseButton}
-      >
-        Close
-      </div> */}
       <Sidebar />
       <div className="main">
         <TopBar />
@@ -87,7 +99,7 @@ export default function Home() {
             <div className="line"></div>
           </div>
 
-          <div>Open sidebar div</div>
+          <div>{categoryName}</div>
         </div>
 
         <div className="page">
